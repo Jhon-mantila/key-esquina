@@ -1,15 +1,17 @@
-package com.esquinaweb.ui;
+package com.esquinaweb.ui.modes;
 
+import com.esquinaweb.contracts.ModeView;
 import com.esquinaweb.ui.components.KeyView;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.input.KeyCode;
 
-public class HistoryPane extends HBox {
+public class HistoryView extends HBox implements ModeView {
 	
 	private static final int MAX_HISTORY = 4;
 	
-    public HistoryPane() {
+    public HistoryView() {
 
         setSpacing(10);
 
@@ -26,6 +28,18 @@ public class HistoryPane extends HBox {
         }
 
         getChildren().add(new KeyView(text));
+
+    }
+    
+    public void keyPressed(KeyCode code) {
+
+        addKey(code.getName());
+
+    }
+
+    public void keyReleased(KeyCode code) {
+
+        // Por ahora no hacemos nada.
 
     }
 }

@@ -37,8 +37,10 @@ public class KeyboardHook implements NativeKeyListener {
     
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
+    	
     	KeyCode code = KeyCodeMapper.toKeyCode(e.getKeyCode());
-    	System.out.println(e.getKeyCode());
+    	
+    	
     	if (code != null) {
     	    Platform.runLater(() -> {
     	        controller.keyPressed(code);
@@ -49,7 +51,16 @@ public class KeyboardHook implements NativeKeyListener {
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
-    	System.out.println("UP " + e.getKeyCode());
+    	
+        KeyCode code = KeyCodeMapper.toKeyCode(e.getKeyCode());
+
+        if (code != null) {
+
+            Platform.runLater(() -> {
+                controller.keyReleased(code);
+            });
+
+        }
     }
 
     @Override

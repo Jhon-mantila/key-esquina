@@ -1,4 +1,5 @@
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\contracts\InputView.java
+C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\contracts\ModeView.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\controller\KeyboardController.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\keyboard\KeyboardHook.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\keyboard\KeyCodeMapper.java
@@ -10,8 +11,9 @@ C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esqu
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\service\ConfigService.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\service\ThemeService.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\components\KeyView.java
-C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\HistoryPane.java
-C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\KeyboardPane.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\MainWindow.java
+C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\ModeContainer.java
+C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\modes\GamingView.java
+C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\modes\HistoryView.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\MousePane.java
 C:\Users\kaise\Documents\Esquinaweb\gimp\Java\key-esquina\src\main\java\com\esquinaweb\ui\OverlayWindow.java

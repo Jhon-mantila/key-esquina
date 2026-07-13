@@ -27,12 +27,20 @@ public class KeyView extends StackPane {
         setNormal();
 
         getChildren().add(textLabel);
+        
+        textLabel.setAlignment(Pos.CENTER);
 
     }
     
     public KeyView(String text) {
 
         this(text,60,60);
+
+    }
+    
+    public KeyView(String text, double size) {
+
+        this(text, size, size);
 
     }
 
@@ -75,6 +83,18 @@ public class KeyView extends StackPane {
     public boolean isKeyPressed() {
 
         return pressed;
+
+    }
+    
+    public void setText(String text) {
+
+    	textLabel.setText(text);
+
+    }
+    
+    public String getText() {
+
+        return textLabel.getText();
 
     }
 
