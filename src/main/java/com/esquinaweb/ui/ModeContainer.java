@@ -6,6 +6,7 @@ import com.esquinaweb.ui.modes.HistoryView;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
+import com.esquinaweb.model.Mode;
 
 public class ModeContainer extends StackPane {
 
@@ -19,23 +20,31 @@ public class ModeContainer extends StackPane {
         historyView = new HistoryView();
         gamingView = new GamingView();
 
-        showHistory();
+        show(Mode.HISTORY);
 
     }
 
-    public void showHistory() {
+    public void show(Mode mode) {
 
-        currentMode = historyView;
+        switch (mode) {
 
-        getChildren().setAll(historyView);
+            case HISTORY:
 
-    }
+                currentMode = historyView;
 
-    public void showGaming() {
+                getChildren().setAll(historyView);
 
-        currentMode = gamingView;
+                break;
 
-        getChildren().setAll(gamingView);
+            case GAMING:
+
+                currentMode = gamingView;
+
+                getChildren().setAll(gamingView);
+
+                break;
+
+        }
 
     }
 

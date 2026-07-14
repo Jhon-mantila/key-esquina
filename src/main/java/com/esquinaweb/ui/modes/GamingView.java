@@ -1,5 +1,8 @@
 package com.esquinaweb.ui.modes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.esquinaweb.contracts.ModeView;
 import com.esquinaweb.ui.components.KeyView;
 
@@ -9,7 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.input.KeyCode;
 
 public class GamingView extends VBox implements ModeView{
-
+	
+	private final Map<KeyCode, KeyView> keyViews = new HashMap<>();
+	
     private final KeyView shiftKey = new KeyView("Shift",120,60);
 
     private final KeyView ctrlKey = new KeyView("Ctrl",120,60);
@@ -19,6 +24,7 @@ public class GamingView extends VBox implements ModeView{
     private final KeyView mouseLeft = new KeyView("Mouse L",120,60);
 
     private final KeyView mouseRight =  new KeyView("Mouse R",120,60);
+    
 
     public GamingView() {
 
@@ -49,6 +55,9 @@ public class GamingView extends VBox implements ModeView{
                 center,
                 bottom
         );
+        
+        keyViews.put(KeyCode.SHIFT, shiftKey);
+        keyViews.put(KeyCode.CONTROL, ctrlKey);
 
     }
 
@@ -77,41 +86,45 @@ public class GamingView extends VBox implements ModeView{
     @Override
     public void keyPressed(KeyCode code) {
 
-        switch (code) {
+        KeyView key = keyViews.get(code);
 
-            case SHIFT:
-                shiftKey.setKeyPressed(true);
-                break;
+        if (key != null) {
 
-            case CONTROL:
-                ctrlKey.setKeyPressed(true);
-                break;
+            key.setKeyPressed(true);
+            return;
 
-            default:
-                actionKey.setText(code.getName());
-                actionKey.setKeyPressed(true);
-                break;
         }
+
+        actionKey.setText(code.getName());
+        actionKey.setKeyPressed(true);
 
     }
 
     @Override
     public void keyReleased(KeyCode code) {
 
-        switch (code) {
+        KeyView key = keyViews.get(code);
 
-            case SHIFT:
-                shiftKey.setKeyPressed(false);
-                break;
+        if (key != null) {
 
-            case CONTROL:
-                ctrlKey.setKeyPressed(false);
-                break;
+            key.setKeyPressed(false);
+            return;
 
-            default:
-                actionKey.setKeyPressed(false);
-                break;
         }
+
+        actionKey.setKeyPressed(false);
+
+    }
+    
+    public void mouseLeftPressed(boolean pressed) {
+
+        mouseLeft.setKeyPressed(pressed);
+
+    }
+
+    public void mouseRightPressed(boolean pressed) {
+
+        mouseRight.setKeyPressed(pressed);
 
     }
 }

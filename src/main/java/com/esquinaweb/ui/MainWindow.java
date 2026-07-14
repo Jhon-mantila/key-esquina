@@ -1,6 +1,7 @@
 package com.esquinaweb.ui;
 
 import com.esquinaweb.controller.KeyboardController;
+import com.esquinaweb.model.Mode;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -37,14 +38,14 @@ public class MainWindow {
         
         historyButton.setOnAction(event -> {
 
-            modeContainer.showHistory();
+        	modeContainer.show(Mode.HISTORY);
             hideMenu();
 
         });
 
         gamingButton.setOnAction(event -> {
 
-            modeContainer.showGaming();
+        	modeContainer.show(Mode.GAMING);
             hideMenu();
         });
         

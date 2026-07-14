@@ -7,7 +7,7 @@ com\esquinaweb\service\ConfigService.class
 com\esquinaweb\ui\MousePane.class
 com\esquinaweb\ui\components\KeyView.class
 com\esquinaweb\keyboard\KeyboardHook.class
-com\esquinaweb\ui\modes\GamingView$1.class
+com\esquinaweb\ui\ModeContainer$1.class
 com\esquinaweb\contracts\InputView.class
 com\esquinaweb\mouse\MouseState.class
 com\esquinaweb\ui\OverlayWindow.class
