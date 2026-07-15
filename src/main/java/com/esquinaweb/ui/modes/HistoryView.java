@@ -11,6 +11,7 @@ public class HistoryView extends HBox implements ModeView {
 	
 	private static final int MAX_HISTORY = 4;
 	
+	
     public HistoryView() {
 
         setSpacing(10);
@@ -40,6 +41,16 @@ public class HistoryView extends HBox implements ModeView {
     public void keyReleased(KeyCode code) {
 
         // Por ahora no hacemos nada.
+
+    }
+    
+    @Override
+    public void mousePressed(int button) {
+
+    }
+
+    @Override
+    public void mouseReleased(int button) {
 
     }
 }

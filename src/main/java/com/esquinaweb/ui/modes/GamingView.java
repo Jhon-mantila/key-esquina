@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.KeyCode;
 
-public class GamingView extends VBox implements ModeView{
+public class GamingView extends VBox implements ModeView {
 	
 	private final Map<KeyCode, KeyView> keyViews = new HashMap<>();
 	
@@ -125,6 +125,40 @@ public class GamingView extends VBox implements ModeView{
     public void mouseRightPressed(boolean pressed) {
 
         mouseRight.setKeyPressed(pressed);
+
+    }
+    
+    @Override
+    public void mousePressed(int button) {
+
+        switch (button) {
+
+            case 1:
+                mouseLeft.setKeyPressed(true);
+                break;
+
+            case 2:
+                mouseRight.setKeyPressed(true);
+                break;
+
+        }
+
+    }
+    
+    @Override
+    public void mouseReleased(int button) {
+
+        switch (button) {
+
+            case 1:
+                mouseLeft.setKeyPressed(false);
+                break;
+
+            case 2:
+                mouseRight.setKeyPressed(false);
+                break;
+
+        }
 
     }
 }

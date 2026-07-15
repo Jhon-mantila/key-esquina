@@ -1,7 +1,12 @@
 package com.esquinaweb.ui;
 
-import com.esquinaweb.controller.KeyboardController;
+import javafx.scene.paint.Color;
+
+import com.esquinaweb.config.ConfigManager;
+import com.esquinaweb.keyboard.KeyboardHook;
 import com.esquinaweb.model.Mode;
+import com.esquinaweb.model.WindowConfig;
+import com.esquinaweb.mouse.MouseHook;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -16,11 +21,19 @@ public class MainWindow {
 	private HBox menu;
 	private VBox content;
 	
+	private double offsetX;
+	private double offsetY;
+	
     public void show(Stage stage) {
 
         BorderPane root = new BorderPane();
-
+        root.setStyle("-fx-background-color: transparent;");
+        
         ModeContainer modeContainer = new ModeContainer();
+        
+        ConfigManager configManager = new ConfigManager();
+
+        WindowConfig config = configManager.getConfig();
         
         menu = new HBox(10);
 
@@ -52,7 +65,8 @@ public class MainWindow {
         root.setCenter(modeContainer);
 
         content = new VBox(20);
-
+        content.setStyle("-fx-background-color: transparent;");
+        
         content.setAlignment(Pos.CENTER);
 
         content.getChildren().addAll(
@@ -63,22 +77,41 @@ public class MainWindow {
         root.setCenter(content);
         
         Scene scene = new Scene(root, 800, 500);
+        //config.setOpacity(0.2);
+        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+        stage.setOpacity(config.getOpacity());
+        
+        
+       
+        
+	        scene.setOnMousePressed(event -> {
+	
+	            offsetX = event.getSceneX();
+	            offsetY = event.getSceneY();
+	
+	        });
+	
+	        scene.setOnMouseDragged(event -> {
+	
+	            stage.setX(event.getScreenX() - offsetX);
+	            stage.setY(event.getScreenY() - offsetY);
+	
+	        });
+        
 
-        KeyboardController controller =
-                new KeyboardController(modeContainer);
+        KeyboardHook keyboardHook = new KeyboardHook(modeContainer);
 
-        controller.start();
+        keyboardHook.register();
+        
+        MouseHook mouseHook = new MouseHook(modeContainer);
 
-        scene.setOnKeyPressed(event -> {
-            controller.keyPressed(event.getCode());
-        });
-
-        scene.setOnKeyReleased(event -> {
-            controller.keyReleased(event.getCode());
-        });
+        mouseHook.register();
 
         stage.setTitle("Key Esquina");
         stage.setScene(scene);
+        
+        stage.setAlwaysOnTop(config.isAlwaysOnTop());
+        
         stage.show();
     }
     

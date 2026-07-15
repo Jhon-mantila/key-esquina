@@ -1,5 +1,8 @@
 package com.esquinaweb.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.esquinaweb.contracts.ModeView;
 import com.esquinaweb.ui.modes.GamingView;
 import com.esquinaweb.ui.modes.HistoryView;
@@ -9,16 +12,16 @@ import javafx.scene.layout.StackPane;
 import com.esquinaweb.model.Mode;
 
 public class ModeContainer extends StackPane {
-
-    private final HistoryView historyView;
-    private final GamingView gamingView;
-
-    private ModeView currentMode;
+	
+	private final Map<Mode, ModeView> modes = new HashMap<>();
+	private Mode currentMode;
+	
+    //private ModeView currentMode;
 
     public ModeContainer() {
 
-        historyView = new HistoryView();
-        gamingView = new GamingView();
+    	modes.put(Mode.HISTORY, new HistoryView());
+    	modes.put(Mode.GAMING, new GamingView());
 
         show(Mode.HISTORY);
 
@@ -26,37 +29,33 @@ public class ModeContainer extends StackPane {
 
     public void show(Mode mode) {
 
-        switch (mode) {
+    	currentMode = mode;
 
-            case HISTORY:
-
-                currentMode = historyView;
-
-                getChildren().setAll(historyView);
-
-                break;
-
-            case GAMING:
-
-                currentMode = gamingView;
-
-                getChildren().setAll(gamingView);
-
-                break;
-
-        }
+    	getChildren().setAll((javafx.scene.Node) modes.get(mode));
 
     }
 
     public void keyPressed(KeyCode code) {
 
-        currentMode.keyPressed(code);
+    	modes.get(currentMode).keyPressed(code);
 
     }
 
     public void keyReleased(KeyCode code) {
 
-        currentMode.keyReleased(code);
+    	modes.get(currentMode).keyReleased(code);
+
+    }
+    
+    public void mousePressed(int button) {
+
+    	modes.get(currentMode).mousePressed(button);
+
+    }
+
+    public void mouseReleased(int button) {
+
+    	modes.get(currentMode).mouseReleased(button);
 
     }
 

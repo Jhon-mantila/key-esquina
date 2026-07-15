@@ -1,8 +1,7 @@
 package com.esquinaweb.keyboard;
 
-import com.esquinaweb.controller.KeyboardController;
-import com.github.kwhat.jnativehook.GlobalScreen;
-import com.github.kwhat.jnativehook.NativeHookException;
+
+import com.esquinaweb.ui.ModeContainer;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
@@ -12,11 +11,11 @@ import javafx.scene.input.KeyCode;
 
 public class KeyboardHook implements NativeKeyListener {
 
-	private final KeyboardController controller;
+	private final ModeContainer modeContainer;
 	
-	public KeyboardHook(KeyboardController controller) {
+	public KeyboardHook(ModeContainer modeContainer) {
 
-	    this.controller = controller;
+		this.modeContainer = modeContainer;
 
 	}
 	
@@ -24,8 +23,12 @@ public class KeyboardHook implements NativeKeyListener {
 
         try {
 
-            GlobalScreen.registerNativeHook();
+            if (!GlobalScreen.isNativeHookRegistered()) {
+                GlobalScreen.registerNativeHook();
+            }
+
             GlobalScreen.addNativeKeyListener(this);
+
 
         } catch (NativeHookException e) {
 
@@ -43,7 +46,7 @@ public class KeyboardHook implements NativeKeyListener {
     	
     	if (code != null) {
     	    Platform.runLater(() -> {
-    	        controller.keyPressed(code);
+    	    	modeContainer.keyPressed(code);
     	    });
 
     	}
@@ -57,7 +60,7 @@ public class KeyboardHook implements NativeKeyListener {
         if (code != null) {
 
             Platform.runLater(() -> {
-                controller.keyReleased(code);
+            	modeContainer.keyReleased(code);
             });
 
         }

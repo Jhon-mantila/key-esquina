@@ -19,6 +19,8 @@ public class KeyCodeMapper {
         MAP.put(NativeKeyEvent.VC_D, KeyCode.D);
         MAP.put(NativeKeyEvent.VC_SHIFT, KeyCode.SHIFT);
         MAP.put(NativeKeyEvent.VC_SPACE, KeyCode.SPACE);
+        MAP.put(NativeKeyEvent.VC_F, KeyCode.F);
+        MAP.put(NativeKeyEvent.VC_CONTROL, KeyCode.CONTROL);
 
     }
     
