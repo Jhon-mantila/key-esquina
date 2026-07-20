@@ -5,6 +5,7 @@ import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.mouse.NativeMouseEvent;
 import com.github.kwhat.jnativehook.mouse.NativeMouseInputListener;
 
+
 import javafx.application.Platform;
 
 public class MouseHook implements NativeMouseInputListener {
@@ -38,17 +39,18 @@ public class MouseHook implements NativeMouseInputListener {
 		// TODO Auto-generated method stub
 		//System.out.println(arg0.getButton());
 	}
-
+	
 	@Override
 	public void nativeMousePressed(NativeMouseEvent arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("Mouse global");
 		Platform.runLater(() -> {
 
 		    modeContainer.mousePressed(arg0.getButton());
 
 		});
 	}
-
+	
 	@Override
 	public void nativeMouseReleased(NativeMouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -58,7 +60,7 @@ public class MouseHook implements NativeMouseInputListener {
 
 		});
 	}
-
+	
 	@Override
 	public void nativeMouseDragged(NativeMouseEvent arg0) {
 		// TODO Auto-generated method stub

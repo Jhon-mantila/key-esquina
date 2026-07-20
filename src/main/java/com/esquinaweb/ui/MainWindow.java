@@ -7,6 +7,7 @@ import com.esquinaweb.keyboard.KeyboardHook;
 import com.esquinaweb.model.Mode;
 import com.esquinaweb.model.WindowConfig;
 import com.esquinaweb.mouse.MouseHook;
+import javafx.application.Platform;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -24,16 +25,18 @@ public class MainWindow {
 	private double offsetX;
 	private double offsetY;
 	
+	private boolean overlayMode = false;
+	
     public void show(Stage stage) {
 
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: transparent;");
         
-        ModeContainer modeContainer = new ModeContainer();
-        
         ConfigManager configManager = new ConfigManager();
 
         WindowConfig config = configManager.getConfig();
+
+        ModeContainer modeContainer = new ModeContainer();
         
         menu = new HBox(10);
 
@@ -43,24 +46,32 @@ public class MainWindow {
 
         Button gamingButton = new Button("Gaming");
 
+        Button configurationButton = new Button("⚙");
+        
+        Button overlayButton = new Button("👁");
+
         menu.getChildren().addAll(
                 historyButton,
-                gamingButton
+                gamingButton,
+                configurationButton,
+                overlayButton
         );
         
+        ConfigurationDialog configurationDialog = new ConfigurationDialog(stage, configManager);
         
         historyButton.setOnAction(event -> {
-
+        	System.out.println("History");
         	modeContainer.show(Mode.HISTORY);
             hideMenu();
 
         });
 
         gamingButton.setOnAction(event -> {
-
+        	System.out.println("Gaming");
         	modeContainer.show(Mode.GAMING);
             hideMenu();
         });
+
         
         root.setCenter(modeContainer);
 
@@ -84,7 +95,7 @@ public class MainWindow {
         
        
         
-	        scene.setOnMousePressed(event -> {
+	       scene.setOnMousePressed(event -> {
 	
 	            offsetX = event.getSceneX();
 	            offsetY = event.getSceneY();
@@ -98,14 +109,33 @@ public class MainWindow {
 	
 	        });
         
+	        configurationButton.setOnAction(event -> {
 
-        KeyboardHook keyboardHook = new KeyboardHook(modeContainer);
+	            configurationDialog.show(stage);
 
-        keyboardHook.register();
-        
-        MouseHook mouseHook = new MouseHook(modeContainer);
+	            stage.setAlwaysOnTop(config.isAlwaysOnTop());
+	            stage.setOpacity(config.getOpacity());
 
-        mouseHook.register();
+	        });
+	        
+	        
+	        overlayButton.setOnAction(event -> {
+
+	            toggleOverlay();
+
+	        });
+	        
+
+	        KeyboardHook keyboardHook = new KeyboardHook(modeContainer);
+	        MouseHook mouseHook = new MouseHook(modeContainer);
+
+	        Platform.runLater(() -> {
+
+	            keyboardHook.register();
+	            mouseHook.register();
+
+	        });
+	        
 
         stage.setTitle("Key Esquina");
         stage.setScene(scene);
@@ -113,6 +143,7 @@ public class MainWindow {
         stage.setAlwaysOnTop(config.isAlwaysOnTop());
         
         stage.show();
+
     }
     
     public void showMenu() {
@@ -126,6 +157,22 @@ public class MainWindow {
 
         menu.setVisible(false);
         menu.setManaged(false);
+
+    }
+    
+    private void toggleOverlay() {
+
+        overlayMode = !overlayMode;
+
+        if (overlayMode) {
+
+            hideMenu();
+
+        } else {
+
+            showMenu();
+
+        }
 
     }
 }

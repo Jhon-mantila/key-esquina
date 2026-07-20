@@ -23,6 +23,7 @@ public class ModeContainer extends StackPane {
     	modes.put(Mode.HISTORY, new HistoryView());
     	modes.put(Mode.GAMING, new GamingView());
 
+
         show(Mode.HISTORY);
 
     }

@@ -12,6 +12,10 @@ public class WindowConfig {
         return alwaysOnTop;
     }
 
+    public void setAlwaysOnTop(boolean alwaysOnTop) {
+        this.alwaysOnTop = alwaysOnTop;
+    }
+
     public boolean isTransparent() {
         return transparent;
     }

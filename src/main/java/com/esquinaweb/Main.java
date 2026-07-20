@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage stage) {
 
     	stage.initStyle(StageStyle.TRANSPARENT);
-    	
+    	//stage.initStyle(StageStyle.DECORATED);
         new MainWindow().show(stage);
         
     }

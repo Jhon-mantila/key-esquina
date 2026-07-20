@@ -28,7 +28,9 @@ public class HistoryView extends HBox implements ModeView {
 
         }
 
-        getChildren().add(new KeyView(text));
+        double width = text.startsWith("Mouse") ? 110 : 60;
+
+        getChildren().add(new KeyView(text, width, 60));
 
     }
     
@@ -46,6 +48,21 @@ public class HistoryView extends HBox implements ModeView {
     
     @Override
     public void mousePressed(int button) {
+
+        switch (button) {
+            case 1:
+                addKey("Mouse L");
+                break;
+            case 2:
+                addKey("Mouse M");
+                break;
+            case 3:
+                addKey("Mouse R");
+                break;
+            default:
+                addKey("Mouse " + button);
+                break;
+        }
 
     }
 
